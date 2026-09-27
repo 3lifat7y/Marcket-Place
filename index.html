@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>سوق بلس | العرض التقديمي لمنصة الـ Marketplace (Pitch Deck v1.0)</title>
+  
+  <meta name="description" content="عرض تقديمي باوربوينت تفاعلي يشرح منصة الـ Marketplace، أهدافها، المستفيدين منها، أدوار السيستم، قصص المستخدمين، ومسارات العمل.">
+  <meta name="theme-color" content="#090d16">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8'
+            }
+          },
+          fontFamily: {
+            arabic: ['Cairo', 'Tajawal', 'sans-serif'],
+            en: ['Plus Jakarta Sans', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Presentation Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#090d16] text-slate-100 flex flex-col justify-between min-h-screen">
+
+  <!-- Top Global Slide Progress Bar -->
+  <div class="fixed top-0 left-0 right-0 h-1 bg-slate-800 z-50 no-print">
+    <div id="slide-progress-bar" class="h-full bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 transition-all duration-300" style="width: 8%;"></div>
+  </div>
+
+  <!-- Top Presentation Control Bar -->
+  <header class="w-full max-w-7xl mx-auto px-4 sm:px-6 pt-5 pb-3 flex items-center justify-between no-print z-40">
+    
+    <!-- Brand / Deck Title -->
+    <div class="flex items-center space-x-3 space-x-reverse">
+      <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white flex items-center justify-center font-black shadow-lg shadow-blue-500/20">
+        <i data-lucide="presentation" class="w-5 h-5"></i>
+      </div>
+      <div>
+        <div class="flex items-center space-x-2 space-x-reverse">
+          <h1 class="font-black text-white text-base tracking-tight">سوق بلس | SouqPlus</h1>
+          <span class="text-[10px] font-en font-black px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">DECK v1.0</span>
+        </div>
+        <span class="text-xs text-slate-400 hidden sm:block">العرض التقديمي الشامل للأدوار والـ Workflows</span>
+      </div>
+    </div>
+
+    <!-- Center Navigation Buttons (Prev / Next & Counter) -->
+    <div class="flex items-center space-x-3 space-x-reverse bg-slate-900/90 border border-white/10 px-4 py-2 rounded-2xl shadow-xl">
+      <!-- Prev Button (Right arrow in RTL) -->
+      <button id="btn-prev-slide" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 disabled:opacity-25 disabled:cursor-not-allowed transition-all" title="الشريحة السابقة (سهم يمين)">
+        <i data-lucide="chevron-right" class="w-4 h-4"></i>
+      </button>
+
+      <!-- Counter -->
+      <div id="slide-counter" class="px-2 flex items-center space-x-1 space-x-reverse select-none">
+        <span class="font-en font-black text-blue-400 text-sm">01</span>
+        <span class="text-slate-500 font-en text-xs">/ 12</span>
+      </div>
+
+      <!-- Next Button (Left arrow in RTL) -->
+      <button id="btn-next-slide" class="p-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white disabled:opacity-25 disabled:cursor-not-allowed transition-all shadow-md shadow-blue-600/30" title="الشريحة التالية (سهم يسار أو مسافة)">
+        <i data-lucide="chevron-left" class="w-4 h-4"></i>
+      </button>
+    </div>
+
+    <!-- Right Quick Controls -->
+    <div class="flex items-center space-x-2 space-x-reverse text-xs">
+      
+      <!-- View Mode (Slide vs Scroll) -->
+      <button id="btn-view-mode" class="hidden md:flex px-3.5 py-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-white/5 items-center space-x-1.5 space-x-reverse transition-all">
+        <i data-lucide="layout-list" class="w-4 h-4"></i>
+        <span id="view-mode-btn-text">عرض متتالي (Scroll)</span>
+      </button>
+
+      <!-- Fullscreen Button -->
+      <button id="btn-fullscreen" class="p-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-white/5 transition-all" title="شاشة كاملة">
+        <i data-lucide="maximize" class="w-4 h-4"></i>
+      </button>
+
+      <!-- Theme Switcher -->
+      <button id="btn-theme-toggle" class="p-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-white/5 transition-all" title="تبديل المظهر">
+        <i data-lucide="sun-moon" class="w-4 h-4"></i>
+      </button>
+
+      <!-- Print / PDF -->
+      <button id="btn-print-deck" class="p-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-white/5 transition-all" title="طباعة العرض وتصدير PDF">
+        <i data-lucide="printer" class="w-4 h-4"></i>
+      </button>
+
+      <!-- Share Link -->
+      <button id="btn-share-link" class="p-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-white/5 transition-all" title="نسخ رابط المشاركة">
+        <i data-lucide="share-2" class="w-4 h-4"></i>
+      </button>
+
+    </div>
+
+  </header>
+
+  <!-- ========================================================
+       MAIN PRESENTATION CANVAS (SLIDE MODE)
+       ======================================================== -->
+  <main class="flex-1 flex items-center justify-center p-3 sm:p-6 w-full max-w-7xl mx-auto" id="slide-wrapper">
+    <div id="slide-canvas" class="slide-container">
+      <!-- Injected via JavaScript -->
+    </div>
+  </main>
+
+  <!-- ========================================================
+       SCROLL MODE CONTAINER (FOR PRINT & VERTICAL READING)
+       ======================================================== -->
+  <main class="w-full max-w-7xl mx-auto p-4 sm:p-6 hidden" id="scroll-mode-wrapper">
+    <div id="scroll-mode-container">
+      <!-- Injected via JavaScript -->
+    </div>
+  </main>
+
+  <!-- ========================================================
+       BOTTOM SLIDE SELECTOR PILLS
+       ======================================================== -->
+  <footer class="w-full max-w-7xl mx-auto px-4 sm:px-6 py-4 no-print">
+    <div class="bg-slate-900/80 border border-white/5 p-2 rounded-2xl flex items-center space-x-2 space-x-reverse overflow-x-auto" id="slide-pills-container">
+      <!-- Injected via JavaScript -->
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
